@@ -35,4 +35,4 @@ if __name__ == "__main__":
         #checks entry is directory and make sure not symbolic link
         if (entry.is_dir(follow_symlinks=False)):
             print(entry.path + " is a directory")
-            ptint(get_size(entry.path))
+            print(get_size(entry.path))
