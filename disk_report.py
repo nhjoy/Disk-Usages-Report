@@ -4,6 +4,19 @@
 import sys
 import os
 
+#function- calculate disk space by each dir
+def get_size(path):
+    total = 0
+    for entry in os.scandir(path):
+        try:
+            if entry.is_dir(follow_symlinks=False):
+                total += get_size(entry.path)
+            else Exception as e:
+                print("Exception: ", e)
+                total += 0
+    return total
+    
+
 #check if standalone program
 if __name__ == "__main__":
     path ='/home'
@@ -20,3 +33,4 @@ if __name__ == "__main__":
         #checks entry is directory and make sure not symbolic link
         if (entry.is_dir(follow_symlinks=False)):
             print(entry.path + " is a directory")
+            ptint(get_size(entry.path))
