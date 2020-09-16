@@ -11,9 +11,11 @@ def get_size(path):
         try:
             if entry.is_dir(follow_symlinks=False):
                 total += get_size(entry.path)
-            else Exception as e:
-                print("Exception: ", e)
-                total += 0
+            else:
+                total += entry.stat(follow_symlinks=False).st_size
+        except Exception as e:
+            print("Exception: ", e)
+            total += 0
     return total
     
 
